@@ -85,10 +85,15 @@ body {
   border: none;
   cursor: pointer;
   background-color: #f1f3f5;
+  transition: transform 0.3s;
 }
 .btn:active {
   background-color: #dee2e6;
   transform: scale(0.98);
+}
+
+.btn-start:active {
+  background-color: #495057;
 }
 
 .inactive {
