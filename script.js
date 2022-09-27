@@ -24,7 +24,7 @@ let timer,
   isRunning = false;
 
 //Converts time to double digit string
-const doubleDigit = (digit) => (digit < 10 ? '0' + digit : String(digit));
+const doubleDigit = (digit) => String(digit).padStart(2, '0');
 
 // Reduce the opacity
 const opacityControl = () => {
