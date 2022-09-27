@@ -23,7 +23,7 @@ let timer,
   hh,
   isRunning = false;
 
-//Converts time to double digit string
+// Converts time to double digit string
 const doubleDigit = (...digits) =>
   digits.flatMap((digit) => String(digit).padStart(2, '0').split(''));
 
@@ -38,9 +38,28 @@ const opacityControl = () => {
   });
 };
 
+// Update page title
+const updatePageTitle = (digits) => {
+  let title = '';
+  if (digits[0] === '0' && digits[1] === '0') {
+    for (let i = 2; i < digits.length; ++i) {
+      title += digits[i];
+      if (i === 3) title += ':';
+    }
+  } else {
+    for (let i = 0; i < 4; ++i) {
+      title += digits[i];
+      if (i === 1) title += ':';
+    }
+  }
+  document.querySelector('title').innerText = title;
+};
+
 // Set the digits of the display
 const setDisplay = (hh, mm, ss) => {
   const digits = doubleDigit(hh, mm, ss);
+  updatePageTitle(digits);
+
   [hEl0, hEl1, mEl0, mEl1, sEl0, sEl1].forEach(
     (el, i) => (el.textContent = digits[i])
   );
