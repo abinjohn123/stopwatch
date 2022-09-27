@@ -120,7 +120,26 @@ const runStopwatch = function () {
   setDisplay(hh, mm, ss);
 };
 
+const resetStopWatch = () => {
+  stopStopwatch();
+
+  digitsEl.forEach((el) => {
+    el.textContent = '-';
+    el.classList.remove('fade');
+  });
+
+  function blink() {
+    digitsEl.forEach((el) => el.classList.toggle('fade'));
+  }
+
+  setTimeout(blink, 400);
+  setTimeout(blink, 800);
+  setTimeout(blink, 1200);
+
+  setTimeout(initStopwatch, 1600);
+};
+
 initStopwatch();
 startEl.addEventListener('click', startStopwatch);
 stopEl.addEventListener('click', stopStopwatch);
-resetEl.addEventListener('click', initStopwatch);
+resetEl.addEventListener('click', resetStopWatch);
