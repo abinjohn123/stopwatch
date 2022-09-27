@@ -24,7 +24,8 @@ let timer,
   isRunning = false;
 
 //Converts time to double digit string
-const doubleDigit = (digit) => String(digit).padStart(2, '0');
+const doubleDigit = (...digits) =>
+  digits.flatMap((digit) => String(digit).padStart(2, '0').split(''));
 
 // Reduce the opacity
 const opacityControl = () => {
@@ -39,12 +40,10 @@ const opacityControl = () => {
 
 // Set the digits of the display
 const setDisplay = (hh, mm, ss) => {
-  sEl1.textContent = doubleDigit(ss).split('')[1];
-  sEl0.textContent = doubleDigit(ss).split('')[0];
-  mEl1.textContent = doubleDigit(mm).split('')[1];
-  mEl0.textContent = doubleDigit(mm).split('')[0];
-  hEl1.textContent = doubleDigit(hh).split('')[1];
-  hEl0.textContent = doubleDigit(hh).split('')[0];
+  const digits = doubleDigit(hh, mm, ss);
+  [hEl0, hEl1, mEl0, mEl1, sEl0, sEl1].forEach(
+    (el, i) => (el.textContent = digits[i])
+  );
 
   opacityControl();
   colonEl.forEach((element) => {
