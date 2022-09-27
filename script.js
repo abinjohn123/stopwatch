@@ -29,11 +29,11 @@ const doubleDigit = (digit) => String(digit).padStart(2, '0');
 // Reduce the opacity
 const opacityControl = () => {
   if (!isRunning) {
-    digitsEl.forEach((digit) => digit.classList.add('zero'));
+    digitsEl.forEach((digit) => digit.classList.add('fade'));
     return;
   }
   digitsEl.forEach((digit) => {
-    if (digit.textContent !== '0') digit.classList.remove('zero');
+    if (digit.textContent !== '0') digit.classList.remove('fade');
   });
 };
 
@@ -48,7 +48,7 @@ const setDisplay = (hh, mm, ss) => {
 
   opacityControl();
   colonEl.forEach((element) => {
-    element.classList.toggle('zero');
+    element.classList.toggle('fade');
   });
 };
 
@@ -61,7 +61,7 @@ const initStopwatch = () => {
   setDisplay(0, 0, 0);
 
   colonEl.forEach((element) => {
-    element.classList.add('zero');
+    element.classList.add('fade');
   });
 };
 
@@ -70,7 +70,7 @@ const startStopwatch = () => {
   if (!isRunning) {
     timer = setInterval(runStopwatch, 1000);
     isRunning = true;
-    sEl1.classList.remove('zero');
+    sEl1.classList.remove('fade');
   }
   startEl.classList.add('inactive');
   body.classList.add('active');
